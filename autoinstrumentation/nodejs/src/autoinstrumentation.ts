@@ -4,12 +4,12 @@ import { OTLPTraceExporter } from '@opentelemetry/exporter-otlp-grpc';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { PrometheusExporter } from "@opentelemetry/exporter-prometheus";
 
-const getMetricExporter = () => {
+function getMetricExporter() {
     if (process.env.OTEL_METRICS_EXPORTER === 'prometheus') {
-        return new PrometheusExporter();
+        return new PrometheusExporter({});
     }
     return undefined;
-};
+}
 
 const sdk = new NodeSDK({
     autoDetectResources: true,
